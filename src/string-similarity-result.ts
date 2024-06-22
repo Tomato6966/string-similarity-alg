@@ -24,6 +24,16 @@ interface StringSimilarityResult {
 
 export class StringSimilarityResults implements StringSimilarityResult {
   private similarities = new Map<string, Match[]>();
+  // Multiplied by matches to toggle sorting from descending (1) to ascending (-1)
+  private orderMultiplier: 1 | -1;
+
+  /**
+   * 
+   * @param order How to sort similarities. Is "descending" by default, which will try to minimize similarity. Conversely, "ascending" will maximize similarity
+   */
+  constructor(order: "ascending" | "descending" = "descending") {
+    this.orderMultiplier = order === "descending" ? 1 : -1;
+  }
 
   add(s1: string, s2: string, similarity: number) {
     if (!this.similarities.has(s1)) {
@@ -52,7 +62,7 @@ export class StringSimilarityResults implements StringSimilarityResult {
 
       let currentBestResult = matches[0];
       matches.forEach((match) => {
-        if (match.match > currentBestResult.match) {
+        if (match.match * this.orderMultiplier > currentBestResult.match * this.orderMultiplier) {
           currentBestResult = match;
         }
       });
@@ -73,7 +83,7 @@ export class StringSimilarityResults implements StringSimilarityResult {
       }
 
       matches.sort((curr, next) => {
-        if (curr.match > next.match) {
+        if (curr.match * this.orderMultiplier < next.match * this.orderMultiplier) {
           return Compare.LESSER_OR_EQUAL;
         }
 

@@ -41,7 +41,7 @@ export class Levenshtein implements SimilarityAlgorithm {
   };
 
   compareOneToMany = (target: string, compare: string[]) => {
-    const ssr = new StringSimilarityResults();
+    const ssr = new StringSimilarityResults("ascending");
     for (const c of compare) {
       const result = this.compare(target, c);
       ssr.add(target, c, result);

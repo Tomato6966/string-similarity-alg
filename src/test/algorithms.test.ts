@@ -1,4 +1,4 @@
-import { jaroSimilarity, jaroWinkler } from "../index";
+import { jaroSimilarity, jaroWinkler, levenshtein, sorensenDice } from "../index";
 
 describe("Algorithms", () => {
   describe("Jaro-Winkler", () => {
@@ -48,5 +48,14 @@ describe("Algorithms", () => {
       const result = jaroSimilarity.compare("dixon", "dicksonx");
       expect(result).toBeCloseTo(0.766);
     });
-  })
+  });
+
+  describe("Levenshtein", () => {
+    it("find best match", () => {
+      const target = "qwertyuiop";
+      const mostSimilar = levenshtein.compareOneToMany(target, ["qwertyuiop", "asdfghjkl"]).bestMatch()[target];
+      expect(mostSimilar.value).toEqual(target);
+      expect(mostSimilar.match).toEqual(0);
+    });
+  });
 })
