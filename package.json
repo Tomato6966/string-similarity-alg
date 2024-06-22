@@ -21,6 +21,10 @@
   ],
   "author": "Leonardo Carvalho",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leodsc/string-similarity-alg"
+  },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.11",
