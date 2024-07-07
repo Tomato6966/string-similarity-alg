@@ -12,6 +12,14 @@
     "publish:minor": "pnpm build && npm version minor && npm publish",
     "publish:major": "pnpm build && npm version major && npm publish"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leodsc/string-similarity-alg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leodsc/string-similarity-alg/issues"
+  },
+  "homepage": "https://github.com/leodsc/string-similarity-alg#readme",
   "keywords": [
     "string",
     "similarity",
