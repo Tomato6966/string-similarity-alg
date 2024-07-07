@@ -62,7 +62,7 @@ export class StringSimilarityResults implements StringSimilarityResult {
 
       let currentBestResult = matches[0];
       matches.forEach((match) => {
-        if (match.match * this.orderMultiplier > currentBestResult.match * this.orderMultiplier) {
+        if (!isNaN(curr.match) && isNaN(next.match) || match.match * this.orderMultiplier > currentBestResult.match * this.orderMultiplier) {
           currentBestResult = match;
         }
       });
